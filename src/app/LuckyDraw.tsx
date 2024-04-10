@@ -7,7 +7,7 @@ export default function LuckyDraw() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   // data from server
-  const ROUTLETTE_DATA = ['100', 'XX', '200', '400', 'XX', '300', '500', 'XX']
+  const ROUTLETTE_DATA = ['100', '200', '300', '400', '500', '600', '700', '800']
   //   const DEFAULT_TEXT_ZERO = 'X'
   const BASE_ROTATE_DEG = 1800 // 7200 / 360 = 20 complete turns
 
