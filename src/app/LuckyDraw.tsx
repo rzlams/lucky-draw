@@ -4,7 +4,7 @@ import { RefObject, SyntheticEvent, useRef } from 'react'
 
 export default function LuckyDraw() {
   const rouletteRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLSelectElement>(null)
 
   // data from server
   const ROUTLETTE_DATA = ['100', '200', '300', '400', '500', '600', '700', '800']
@@ -38,13 +38,18 @@ export default function LuckyDraw() {
               Expected result
             </label>
             <div className="group flex relative">
-              <input
+              <select
                 ref={inputRef}
-                type="text"
                 id="expected-result"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="100, 400, etc"
-              />
+              >
+                <option value="null">Random</option>
+                {ROUTLETTE_DATA.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
 
               <span
                 className="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute right-0 
@@ -64,12 +69,15 @@ export default function LuckyDraw() {
         </div>
       </form>
 
-      <div className="roulette-container">
+      <div className="roulette-container relative">
         <div className="arrow"></div>
+        <div className="arrow-base"></div>
         <div className="roulette" ref={rouletteRef}>
           {ROUTLETTE_DATA.map((value, index) => (
             <div key={index} className={`fill fill_${index + 1}`}>
-              <div className="content">{value}</div>
+              <div className="content">
+                <div className="content-text">{value}$</div>
+              </div>
             </div>
           ))}
 

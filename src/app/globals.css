@@ -6,6 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  --roulette-scale: 1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,13 +28,24 @@ body {
   font-family: sans-serif;
   height: 100%;
 }
+.arrow-base {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 42%;
+  border-radius: 50%;
+  border: 50px solid gold;
+  z-index: 30;
+}
 .arrow {
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 20px solid #000;
-  margin-bottom: 10px;
+  border-left: 49px solid transparent;
+  border-right: 49px solid transparent;
+  border-bottom: 70px solid gold;
+  position: absolute;
+  top: 37%;
+  z-index: 50;
 }
 .roulette-container {
   min-height: 100%;
@@ -42,8 +55,8 @@ body {
   align-items: center;
 }
 .roulette {
-  width: 300px;
-  height: 300px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
   background: white;
   outline: 40px solid rgb(216 19 0);
@@ -54,60 +67,64 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 300px;
-  height: 300px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
   -webkit-clip-path: polygon(0% 0%, 50% 50%, 0% 50%, 0% 0%);
   clip-path: polygon(0% 0%, 50% 50%, 0% 50%, 0% 0%);
 }
 .fill_1 {
-  background: lightcoral;
+  background: #061e39;
 }
 .fill_2 {
   transform: rotate(45deg);
-  background: #dddddd;
+  background: #02a492;
 }
 .fill_3 {
   transform: rotate(90deg);
-  background: lightgreen;
+  background: #ffa800;
 }
 .fill_4 {
   transform: rotate(135deg);
-  background: lightseagreen;
+  background: #ff5b27;
 }
 .fill_5 {
   transform: rotate(180deg);
-  background: #dddddd;
+  background: #061e39;
 }
 .fill_6 {
   transform: rotate(225deg);
-  background: lightsalmon;
+  background: #02a492;
 }
 .fill_7 {
   transform: rotate(270deg);
-  background: lightpink;
+  background: #ffa800;
 }
 .fill_8 {
   transform: rotate(315deg);
-  background: #dddddd;
+  background: #ff5b27;
 }
 .content {
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: bold;
   width: 260px;
   height: 260px;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 20%;
+  left: 10%;
   text-align: center;
   transform: rotate(-67deg);
+  color: white;
+}
+.content-text {
+  transform: rotate(-90deg) translateX(-10%);
 }
 .line {
-  width: 300px;
+  width: 600px;
   height: 3px;
   background: black;
   position: absolute;
-  top: 149px;
+  top: 300px;
   left: 0;
 }
 .line_1 {
