@@ -1,32 +1,49 @@
-'use client'
+"use client";
 
-import { RefObject, SyntheticEvent, useRef } from 'react'
+import { RefObject, SyntheticEvent, useRef } from "react";
 
-export default function LuckyDraw() {
-  const rouletteRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLSelectElement>(null)
+export default function CasinoRoulette() {
+  const rouletteRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLSelectElement>(null);
 
   // data from server
-  const ROUTLETTE_DATA = ['100', '200', '300', '400', '500', '600', '700', '800']
+  const ROUTLETTE_DATA = [
+    "100",
+    "200",
+    "300",
+    "400",
+    "500",
+    "600",
+    "700",
+    "800",
+  ];
   //   const DEFAULT_TEXT_ZERO = 'X'
-  const BASE_ROTATE_DEG = 1800 // 7200 / 360 = 20 complete turns
+  const BASE_ROTATE_DEG = 1800; // 7200 / 360 = 20 complete turns
 
   function play(e: SyntheticEvent) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const expectedResultIndex = ROUTLETTE_DATA.indexOf(String(inputRef.current?.value))
+    const expectedResultIndex = ROUTLETTE_DATA.indexOf(
+      String(inputRef.current?.value)
+    );
 
-    const selectedIdx = expectedResultIndex === -1 ? Math.floor(Math.random() * ROUTLETTE_DATA.length - 1) : expectedResultIndex
+    const selectedIdx =
+      expectedResultIndex === -1
+        ? Math.floor(Math.random() * ROUTLETTE_DATA.length - 1)
+        : expectedResultIndex;
     // 360 / ROUTLETTE_DATA.length / 2 = 22.5
-    const additionalDeg = 22.5 * (2 * (1 - selectedIdx) + 1)
-    const totalDeg = BASE_ROTATE_DEG + additionalDeg
-    const animationKeyframes = [{ transform: 'rotate(0deg)' }, { transform: `rotate(${totalDeg}deg)` }]
-    const roulette = rouletteRef.current as unknown as HTMLDivElement
+    const additionalDeg = 22.5 * (2 * (1 - selectedIdx) + 1);
+    const totalDeg = BASE_ROTATE_DEG + additionalDeg;
+    const animationKeyframes = [
+      { transform: "rotate(0deg)" },
+      { transform: `rotate(${totalDeg}deg)` },
+    ];
+    const roulette = rouletteRef.current as unknown as HTMLDivElement;
     roulette.animate(animationKeyframes, {
-      fill: 'forwards',
+      fill: "forwards",
       duration: 7000,
-      easing: 'ease-in-out',
-    })
+      easing: "ease-in-out",
+    });
   }
 
   return (
@@ -34,7 +51,10 @@ export default function LuckyDraw() {
       <form onSubmit={play}>
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div className="group relative">
-            <label htmlFor="expected-result" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label
+              htmlFor="expected-result"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
               Expected result
             </label>
             <div className="group flex relative">
@@ -72,20 +92,22 @@ export default function LuckyDraw() {
       <div className="roulette-container relative">
         <div className="arrow"></div>
         <div className="arrow-base"></div>
-        <div className="roulette" ref={rouletteRef}>
-          {ROUTLETTE_DATA.map((value, index) => (
-            <div key={index} className={`fill fill_${index + 1}`}>
-              <div className="content">
-                <div className="content-text">{value}$</div>
+        <div className="roulette-border">
+          <div className="roulette" ref={rouletteRef}>
+            {ROUTLETTE_DATA.map((value, index) => (
+              <div key={index} className={`fill fill_${index + 1}`}>
+                <div className="content">
+                  <div className="content-text">{value}$</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
 
-          {ROUTLETTE_DATA.map((_, index) => (
-            <div key={index} className={`line line_${index}`}></div>
-          ))}
+            {ROUTLETTE_DATA.map((_, index) => (
+              <div key={index} className={`line line_${index}`}></div>
+            ))}
+          </div>
         </div>
       </div>
     </main>
-  )
+  );
 }

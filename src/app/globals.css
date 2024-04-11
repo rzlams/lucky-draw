@@ -40,9 +40,9 @@ body {
 .arrow {
   width: 0;
   height: 0;
-  border-left: 49px solid transparent;
-  border-right: 49px solid transparent;
-  border-bottom: 70px solid gold;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 80px solid gold;
   position: absolute;
   top: 37%;
   z-index: 50;
@@ -54,13 +54,16 @@ body {
   justify-content: center;
   align-items: center;
 }
+.roulette-border {
+  border-radius: 50%;
+  outline: 40px solid rgb(216 19 0);
+}
 .roulette {
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: white;
-  outline: 40px solid rgb(216 19 0);
-  margin: 40px;
+  background: black;
+  outline: 5px solid black;
   position: relative;
 }
 .fill {
@@ -120,12 +123,12 @@ body {
   transform: rotate(-90deg) translateX(-10%);
 }
 .line {
-  width: 600px;
+  width: 605px;
   height: 3px;
   background: black;
   position: absolute;
-  top: 300px;
-  left: 0;
+  top: 298px;
+  left: -2px;
 }
 .line_1 {
   transform: rotate(45deg);

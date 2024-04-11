@@ -1,9 +1,5 @@
-import LuckyDraw from "./LuckyDraw"
-
+import Link from "next/link";
 
 export default function Home() {
-
-  return (
-    <LuckyDraw />
-  )
+  return <Link href="/casino-roulette">Casino Roulette</Link>;
 }
